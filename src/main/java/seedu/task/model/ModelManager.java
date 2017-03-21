@@ -96,6 +96,16 @@ public class ModelManager extends ComponentManager implements Model {
     public UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList() {
         return new UnmodifiableObservableList<>(filteredTasks);
     }
+    @Override
+    public UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList1(boolean value) {
+        if(value) {
+            updateFilteredTaskList(true); 
+        } else {
+            updateFilteredTaskList(false);
+        }
+        
+        return new UnmodifiableObservableList<>(filteredTasks);
+    }
 
     @Override
     public void updateFilteredListToShowAll() {

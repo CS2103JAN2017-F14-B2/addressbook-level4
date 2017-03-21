@@ -12,6 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.events.ui.TaskPanelSelectionChangedEvent;
 import seedu.task.commons.util.FxViewUtil;
@@ -21,14 +22,14 @@ import seedu.task.model.task.TaskComparator;
 /**
  * Panel containing the list of tasks.
  */
-public class TaskListPanel extends UiPart<Region> {
-    private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
-    private static final String FXML = "TaskListPanel.fxml";
+public class TaskListPanel1 extends UiPart<Region> {
+    private final Logger logger = LogsCenter.getLogger(TaskListPanel1.class);
+    private static final String FXML = "TaskListPanel1.fxml";
 
     @FXML
     private ListView<ReadOnlyTask> taskListView;
 
-    public TaskListPanel(AnchorPane taskListPlaceholder, ObservableList<ReadOnlyTask> taskList) {
+    public TaskListPanel1(AnchorPane taskListPlaceholder, ObservableList<ReadOnlyTask> taskList) {
         super(FXML);
         setConnections(taskList);
         addToPlaceholder(taskListPlaceholder);
@@ -67,12 +68,18 @@ public class TaskListPanel extends UiPart<Region> {
 
         @Override
         protected void updateItem(ReadOnlyTask task, boolean empty) {
-            super.updateItem(task, empty);
-
-            if (empty || task == null || task.isDone()==false) {
-                setGraphic(null);
-                setText(null);
-            } else {
+           super.updateItem(task, empty);
+            
+            if (empty || task == null || task.isDone()==true) {
+               System.out.println("yes");
+              setGraphic(null);
+              setText(null);
+             setDisable(false);
+              setTextFill(Color.BLACK);
+              setStyle(""); 
+             
+            }else{
+                System.out.println("out");
                 setGraphic(new TaskCard(task, getIndex() + 1).getRoot());
             }
         }

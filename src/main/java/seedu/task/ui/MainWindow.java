@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Region> {
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
     private TaskListPanel taskListPanel;
+    private TaskListPanel1 taskListPanel1;
     private Config config;
 
     @FXML
@@ -51,6 +52,9 @@ public class MainWindow extends UiPart<Region> {
 
     @FXML
     private AnchorPane taskListPanelPlaceholder;
+    
+    @FXML
+    private AnchorPane taskListPanelPlaceholder1;
 
     @FXML
     private AnchorPane resultDisplayPlaceholder;
@@ -117,8 +121,9 @@ public class MainWindow extends UiPart<Region> {
     }
 
     void fillInnerParts() {
-        browserPanel = new BrowserPanel(browserPlaceholder);
+       browserPanel = new BrowserPanel(browserPlaceholder);
         taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
+        taskListPanel1 = new TaskListPanel1(getTaskList1Placeholder(), logic.getFilteredTaskList());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getTaskManagerFilePath());
         new CommandBox(getCommandBoxPlaceholder(), logic);
@@ -138,6 +143,10 @@ public class MainWindow extends UiPart<Region> {
 
     private AnchorPane getTaskListPlaceholder() {
         return taskListPanelPlaceholder;
+    }
+    
+    private AnchorPane getTaskList1Placeholder() {
+        return taskListPanelPlaceholder1;
     }
 
     void hide() {
@@ -207,6 +216,10 @@ public class MainWindow extends UiPart<Region> {
 
     public TaskListPanel getTaskListPanel() {
         return this.taskListPanel;
+    }
+    
+    public TaskListPanel1 getTaskList1Panel() {
+        return this.taskListPanel1;
     }
 
     void loadTaskPage(ReadOnlyTask task) {

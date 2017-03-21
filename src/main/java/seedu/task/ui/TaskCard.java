@@ -32,6 +32,7 @@ public class TaskCard extends UiPart<Region> {
 
     public TaskCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
+        //if(task.isDone()) {
         name.setText(task.getName().fullName);
         id.setText(displayedIndex + ". ");
         startDate.setText(task.getStartDate().toString());
@@ -44,6 +45,7 @@ public class TaskCard extends UiPart<Region> {
         }
         remark.setText(task.getRemark().value);
         initTags(task);
+        //}
     }
 
     private void initTags(ReadOnlyTask task) {
